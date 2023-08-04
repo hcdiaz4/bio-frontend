@@ -1,9 +1,9 @@
 
 ## Prueba FrontEnd Herasmo Diaz
 
-### Información
+### Información del proyecto
 
-Proyecto desarrollado para consultar todos los paises del mundo. El proyecto permite buscar paises ya sea por su nombre o filtrando por continente.
+Proyecto desarrollado para consultar todos los países del mundo. El proyecto permite buscar paises ya sea por su nombre o filtrando por continente.
 
 ### Caracteristicas principales
 
