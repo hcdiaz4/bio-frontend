@@ -23,7 +23,7 @@ const DetailPage = () => {
                 <div>Sub Region: {country[0].subregion}</div>
                 <div>Capital {country[0].capital}</div>
                 <div>Top Level Domain: {country[0].tld[0]}</div>
-                <div>Currencies: {country[0].currencies[Object.keys(country[0].currencies)].name}</div>
+                <div>Currencies:  {country[0].currencies[Object.keys(country[0].currencies)].name}</div>
                 <div>
                     Languagues: {Object.keys(country[0].languages).map(item => {
                         return (
