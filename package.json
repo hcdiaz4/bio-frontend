@@ -9,10 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ionic/react": "^7.2.2",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.12",
+    "ionicons": "^7.1.2",
     "next": "13.4.12",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "sass": "^1.64.2"
   }
 }
