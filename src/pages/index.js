@@ -1,5 +1,3 @@
-import Footer from "@/app/components/Footer";
-import Header from "@/app/components/Header";
 import Services from "@/app/services/Services";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -18,7 +16,6 @@ const HomePage = () => {
         event.preventDefault();
         let inputValue = event.target.value;
         let filterCountry = countries.filter((item) => item['name'].official.toLowerCase().includes(inputValue.toLowerCase()))
-        console.log("Countries search", filterCountry);
         setCountriesFilter(filterCountry);
     };
 
@@ -26,13 +23,11 @@ const HomePage = () => {
         event.preventDefault();
         const regionSelected = event.target.value == 'all' ? 'all' : `region/${event.target.value}`;
         const dataFilterResponse = await Services.getServiceCountries(regionSelected);
-        console.log(dataFilterResponse);
         setCountriesFilter(dataFilterResponse);
     };
 
     return (
         <>
-            <Header />
             <div className="countries">
                 <div className="countries__filters">
                     <form>
@@ -50,8 +45,8 @@ const HomePage = () => {
                 </div>
                 {countriesFilter.map(item => {
                     return (
-                        <Link href={`/detail?id=${item['cca2']}`}>
-                            <div className="countries__country">
+                        <div className="countries__country">
+                            <Link href={`/detail?id=${item['cca2']}`} key={item['cca2']}>
                                 <img alt={item['name'].official} src={item['flags'].png} />
                                 <div className="countries__country__description">
                                     <div className="countries__country__description__name">{item['name'].official}</div>
@@ -59,12 +54,11 @@ const HomePage = () => {
                                     <div className="countries__country__description__region"><b>Region:</b> {item['region']}</div>
                                     <div className="countries__country__description__capital"><b>Capital:</b> {item['capital']}</div>
                                 </div>
-                            </div>
-                        </Link>
+                            </Link>
+                        </div>
                     )
                 })}
             </div>
-            <Footer />
         </>
     );
 };

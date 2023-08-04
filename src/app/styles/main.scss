@@ -1,6 +1,7 @@
 @import 'fonts';
 @import 'colors';
 @import 'functions';
+@import 'mediaQueries';
 @import 'global';
 
 * {
@@ -9,10 +10,59 @@
     text-decoration: none;
 }
 
+a {
+    color: black;
+}
+
 body {
     padding: 0;
     margin: 0;
     background-color: #f2f2f2;
+    transition: all ease-in-out .3s;
+
+    &.darkMode {
+        background-color: var(--very-dark-blue);
+        color: var(--white);
+
+        .header {
+            background-color: var(--dark-blue);
+            box-shadow: 0 4px 4px var(--very-dark-blue);
+        }
+
+        .countries__filters {
+
+            input,
+            select {
+                background-color: var(--dark-blue);
+                box-shadow: 0px 0px 10px 0px rgba(#cccccc, 0.1), 0px 10px 15px -3px rgba(#cccccc, 0.1), 0px 10px 15px -3px rgba(#cccccc, 0.1);
+                color: var(--very-light-gray);
+            }
+        }
+
+        .countries__country {
+            background-color: var(--dark-blue);
+            box-shadow: 0px 0px 10px 0px rgba(var(--very-dark-blue), 0.1), 0px 10px 15px -3px rgba(var(--very-dark-blue), 0.1), 0px 10px 15px -3px rgba(var(--very-dark-blue), 0.1);
+
+            a {
+                color: var(--very-light-gray);
+            }
+        }
+
+        .detail__button {
+            button {
+                background-color: var(--dark-blue);
+                color: var(--very-light-gray);
+                box-shadow: 0px 0px 10px 0px rgba(var(--very-dark-blue), 0.1), 0px 10px 15px -3px rgba(var(--very-dark-blue), 0.1), 0px 10px 15px -3px rgba(var(--very-dark-blue), 0.1);
+
+            }
+        }
+
+        .detail__content__borders__border {
+            background-color: var(--dark-blue);
+            color: var(--very-light-gray);
+            box-shadow: 0px 0px 10px 0px rgba(var(--very-dark-blue), 0.1), 0px 10px 15px -3px rgba(var(--very-dark-blue), 0.1), 0px 10px 15px -3px rgba(var(--very-dark-blue), 0.1);
+        }
+    }
 }
 
 .header {
@@ -33,6 +83,7 @@ body {
         display: flex;
         font-weight: 600;
         align-items: center;
+        cursor: pointer;
 
         ion-icon {
             margin-right: toRem(10);
@@ -41,6 +92,15 @@ body {
 }
 
 .countries {
+    @include lg {
+        display: flex;
+        width: 100%;
+        max-width: 1440px;
+        margin: 0 auto;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
     &__filters {
         display: flex;
         width: 100%;
@@ -52,6 +112,12 @@ body {
             justify-content: flex-start;
             margin-bottom: toRem(30);
             flex-wrap: wrap;
+
+            @include lg {
+                width: 100%;
+                padding: 0 20px;
+                justify-content: space-between;
+            }
 
             input[type="text"] {
                 width: 100%;
@@ -66,6 +132,10 @@ body {
                 &::placeholder {
                     color: #CCCCCC;
                 }
+
+                @include lg {
+                    width: 40%;
+                }
             }
 
             select {
@@ -76,6 +146,10 @@ body {
                 border-radius: 5px;
                 border: none;
                 box-shadow: 0px 0px 10px 0px rgba(#cccccc, 0.1), 0px 10px 15px -3px rgba(#cccccc, 0.1), 0px 10px 15px -3px rgba(#cccccc, 0.1);
+
+                @include lg {
+                    width: 20%;
+                }
             }
         }
     }
@@ -89,6 +163,13 @@ body {
         margin-bottom: toRem(40);
         box-shadow: 0px 0px 10px 0px rgba(#cccccc, 0.1), 0px 10px 15px -3px rgba(#cccccc, 0.1), 0px 10px 15px -3px rgba(#cccccc, 0.1);
         color: black;
+
+        @include lg {
+            width: calc(25% - 40px);
+            margin: initial;
+            margin: 20px;
+        }
+
         img {
             width: 100%;
         }
@@ -110,6 +191,109 @@ body {
                 }
 
                 font-size: toRem(14);
+            }
+        }
+    }
+}
+
+.detail {
+    padding: toRem(0) toRem(30);
+
+    @include lg {
+        display: flex;
+        width: 100%;
+        max-width: 1400px;
+        flex-wrap: wrap;
+        padding: 0 20px;
+        box-sizing: border-box;
+        align-items: center;
+    }
+
+    &__flag {
+        width: 100%;
+
+        @include lg {
+            width: 40%;
+        }
+
+        img {
+            width: 100%;
+        }
+    }
+
+    &__button {
+        @include lg {
+            width: 100%;
+        }
+
+        button {
+            border: none;
+            background-color: var(--white);
+            padding: toRem(5) toRem(20);
+            box-shadow: 0px 0px 10px 0px rgba(#cccccc, 0.1), 0px 10px 15px -3px rgba(#cccccc, 0.1), 0px 10px 15px -3px rgba(#cccccc, 0.1);
+            margin: toRem(40) 0;
+        }
+    }
+
+    &__content {
+        display: flex;
+        line-height: 2;
+        flex-wrap: wrap;
+        flex-direction: column;
+
+        @include lg {
+            width: 45%;
+            margin-left: 5%;
+            flex-direction: row;
+            justify-content: space-between;
+
+            &.left,
+            &.right {
+                width: 40%;
+                margin-left: 0;
+            }
+        }
+
+        &__name {
+            font-size: toRem(18);
+            font-weight: 800;
+            margin: toRem(20) toRem(0);
+
+            @include lg {
+                width: 100%;
+                font-size: toRem(20);
+            }
+        }
+
+        &__tld {
+            margin-top: toRem(40);
+
+            @include lg {
+                margin-top: 0;
+            }
+        }
+
+        &__borders {
+            display: flex;
+            width: 100%;
+            flex-wrap: wrap;
+            margin-top: toRem(40);
+
+            @include lg {
+                align-items: center;
+            }
+
+            &__border {
+                box-shadow: 0px 0px 10px 0px rgba(#cccccc, 0.1), 0px 10px 15px -3px rgba(#cccccc, 0.1), 0px 10px 15px -3px rgba(#cccccc, 0.1);
+                padding: toRem(5) toRem(15);
+                background-color: var(--white);
+                margin-bottom: toRem(5);
+                margin-right: toRem(5);
+
+                @include lg {
+                    margin-left: 5px;
+                    margin-right: 0;
+                }
             }
         }
     }
